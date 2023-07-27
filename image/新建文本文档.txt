@@ -1,0 +1,56 @@
+//各种无符号强转为浮点
+	float1 = (float)unsignedint1;
+004600F4 8B 45 80             mov         eax,dword ptr [unsignedint1]  
+004600F7 89 85 A0 FE FF FF    mov         dword ptr [ebp-160h],eax  
+004600FD F2 0F 2A 85 A0 FE FF FF cvtsi2sd    xmm0,dword ptr [ebp-160h]  
+00460105 8B 8D A0 FE FF FF    mov         ecx,dword ptr [ebp-160h]  
+0046010B C1 E9 1F             shr         ecx,1Fh  
+0046010E F2 0F 58 04 CD 00 AF 4F 00 addsd       xmm0,mmword ptr __xmm@41f00000000000000000000000000000 (04FAF00h)[ecx*8]  
+00460117 F2 0F 11 85 98 FE FF FF movsd       mmword ptr [ebp-168h],xmm0  
+0046011F F2 0F 5A 85 98 FE FF FF cvtsd2ss    xmm0,mmword ptr [ebp-168h]  
+00460127 F3 0F 11 45 D0       movss       dword ptr [float1],xmm0  
+	float1 = (float)unsignedshort1;
+0046012C 0F B7 85 74 FF FF FF movzx       eax,word ptr [unsignedshort1]  
+00460133 F3 0F 2A C0          cvtsi2ss    xmm0,eax  
+00460137 F3 0F 11 45 D0       movss       dword ptr [float1],xmm0  
+	float1 = (float)unsignedlong1;
+0046013C 8B 85 68 FF FF FF    mov         eax,dword ptr [unsignedlong1]  
+00460142 89 85 A0 FE FF FF    mov         dword ptr [ebp-160h],eax  
+00460148 F2 0F 2A 85 A0 FE FF FF cvtsi2sd    xmm0,dword ptr [ebp-160h]  
+00460150 8B 8D A0 FE FF FF    mov         ecx,dword ptr [ebp-160h]  
+00460156 C1 E9 1F             shr         ecx,1Fh  
+00460159 F2 0F 58 04 CD 00 AF 4F 00 addsd       xmm0,mmword ptr __xmm@41f00000000000000000000000000000 (04FAF00h)[ecx*8]  
+00460162 F2 0F 11 85 98 FE FF FF movsd       mmword ptr [ebp-168h],xmm0  
+0046016A F2 0F 5A 85 98 FE FF FF cvtsd2ss    xmm0,mmword ptr [ebp-168h]  
+00460172 F3 0F 11 45 D0       movss       dword ptr [float1],xmm0  
+
+	double1 = (double)unsignedint1;
+00460177 8B 45 80             mov         eax,dword ptr [unsignedint1]  
+0046017A 89 85 A0 FE FF FF    mov         dword ptr [ebp-160h],eax  
+00460180 F2 0F 2A 85 A0 FE FF FF cvtsi2sd    xmm0,dword ptr [ebp-160h]  
+00460188 8B 8D A0 FE FF FF    mov         ecx,dword ptr [ebp-160h]  
+0046018E C1 E9 1F             shr         ecx,1Fh  
+00460191 F2 0F 58 04 CD 00 AF 4F 00 addsd       xmm0,mmword ptr __xmm@41f00000000000000000000000000000 (04FAF00h)[ecx*8]  
+0046019A F2 0F 11 45 C0       movsd       mmword ptr [double1],xmm0  
+	double1 = (double)unsignedshort1;
+0046019F 0F B7 85 74 FF FF FF movzx       eax,word ptr [unsignedshort1]  
+004601A6 F2 0F 2A C0          cvtsi2sd    xmm0,eax  
+004601AA F2 0F 11 45 C0       movsd       mmword ptr [double1],xmm0  
+	double1 = (double)unsignedlong1;
+004601AF 8B 85 68 FF FF FF    mov         eax,dword ptr [unsignedlong1]  
+004601B5 89 85 A0 FE FF FF    mov         dword ptr [ebp-160h],eax  
+004601BB F2 0F 2A 85 A0 FE FF FF cvtsi2sd    xmm0,dword ptr [ebp-160h]  
+004601C3 8B 8D A0 FE FF FF    mov         ecx,dword ptr [ebp-160h]  
+004601C9 C1 E9 1F             shr         ecx,1Fh  
+004601CC F2 0F 58 04 CD 00 AF 4F 00 addsd       xmm0,mmword ptr __xmm@41f00000000000000000000000000000 (04FAF00h)[ecx*8]  
+004601D5 F2 0F 11 45 C0       movsd       mmword ptr [double1],xmm0  
+	//各种无符号强转为字符
+	char2 = (char)unsignedint1;
+004601DA 8A 45 80             mov         al,byte ptr [unsignedint1]  
+004601DD 88 45 9B             mov         byte ptr [char2],al  
+	char2 = (char)unsignedshort1;
+004601E0 8A 85 74 FF FF FF    mov         al,byte ptr [unsignedshort1]  
+004601E6 88 45 9B             mov         byte ptr [char2],al  
+	char2 = (char)unsignedlong1;
+004601E9 8A 85 68 FF FF FF    mov         al,byte ptr [unsignedlong1]  
+004601EF 88 45 9B             mov         byte ptr [char2],al  
